@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cloud Computing and Security Questions</title>
+    </head>
+
+    <body>
+        <h1>Cloud Computing and Security Questions</h1>
+
+        <section>
+            <h2>1. Why are so many companies using cloud-based email and calendar services?</h2>
+
+            <p>
+                In the past, running business communications meant buying physical server hardware,
+                installing software like Microsoft Exchange or Thunderbird and keeping dedicated IT
+                staff around just to manage mailboxes. Today almost every company has shifted to
+                cloud-based email and calendar platforms like Microsoft 365 or Google.
+            </p>
+
+            <p>
+                The main reason for this migration is that self-hosting email has become a nightmare
+                for IT teams. An email server needs to stay active 24/7 with zero downtime, as even
+                a short outage can completely freeze business operations.
+            </p>
+
+            <p>
+                On top of that, handling email security, manually managing aggressive spam filters,
+                and complex domain authentication rules so your messages don't end up in a massive
+                resource sink. So large cloud providers have built a dominant hold on global email
+                delivery, making it nearly impossible for small or medium self-hosted servers to
+                stay trusted and reliable.
+            </p>
+
+            <p>
+                Switching to cloud services also makes employee collaboration seamless across
+                different devices. Workers can schedule meetings, view shared team availability, and
+                join online video calls from anywhere without dealing with VPNs.
+            </p>
+
+            <p>
+                By adopting this SaaS model, companies convert unpredictable maintenance problems
+                and severe security risks into a stable, predictable monthly subscription where the
+                cloud provider manages server health, software updates, and backups.
+            </p>
+        </section>
+
+        <section>
+            <h2>2. Why do many IoT devices use Google's 8.8.8.8 or other public DNS resolvers?</h2>
+
+            <p>
+                Internet of Things hardware like smart TVs, home security cameras, and connected
+                appliances frequently ignores local router settings and queries public DNS resolvers
+                like Google (8.8.8.8) or Cloudflare (1.1.1.1) directly instead of using the local
+                ISP's DNS.
+            </p>
+
+            <p>
+                The main reason manufacturers hardcode these public DNS servers into device firmware
+                is to guarantee global reliability and consistency out of the box. Home routers and
+                local ISP DNS servers can often be slow, misconfigured, or temporarily offline.
+            </p>
+
+            <p>
+                If a smart TV relied exclusively on a flaky home router DNS, the TV might fail to
+                reach its streaming servers, making the user blame the manufacturer for a broken
+                device. Hardcoding a universally reliable resolver like 8.8.8.8 ensures the device
+                can translate domain names to IP addresses anywhere in the world without depending
+                on local network stability.
+            </p>
+
+            <p>
+                Another major factor is bypassing local network blocks or DNS hijacking. Some home
+                routers or local ISPs block or modify DNS requests for region locking, ad-filtering,
+                or security reasons.
+            </p>
+
+            <p>
+                By communicating directly with public resolvers, IoT devices ensure an unblocked
+                connection back to their manufacturer's infrastructure, allowing them to download
+                critical system updates, report device health, and stream media smoothly regardless
+                of the local network environment.
+            </p>
+        </section>
+
+        <section>
+            <h2>
+                3. When should you maintain your own web server and when should you use SaaS, PaaS,
+                or IaaS?
+            </h2>
+
+            <p>
+                Choosing between running your own physical web server or relying on cloud service
+                models like IaaS, PaaS, SaaS comes down to finding the right balance between
+                control, operational effort, and total cost.
+            </p>
+
+            <p>
+                Maintaining a self-hosted physical web server only makes sense in very specific
+                scenarios, for example when an organization faces strict legal data sovereignty
+                requirements, already owns server hardware, or requires full low-level access to
+                customized physical hardware and OS kernels.
+            </p>
+
+            <p>
+                However, this choice comes with high upfront costs, such as buying servers, storage,
+                and cooling systems, as well as constant maintenance demands like hardware repair,
+                power redundancy, physical security, and manual scaling.
+            </p>
+
+            <p>
+                For almost every other modern web service, cloud models offer a much smarter
+                alternative:
+            </p>
+
+            <h3>Infrastructure as a Service (IaaS)</h3>
+
+            <p>
+                I'd choose IaaS, such as AWS EC2, Azure VMs, or CSC cPouta, when I need full virtual
+                machine control to run custom applications or legacy software stacks, but don't want
+                the hassle of managing physical hardware.
+            </p>
+
+            <p>
+                I handle OS updates and application setup, while the cloud vendor maintains the host
+                hardware.
+            </p>
+
+            <h3>Platform as a Service (PaaS)</h3>
+
+            <p>
+                PaaS, such as CSC Rahti or Render would be my preferred choice when the goal is
+                purely writing code and shipping applications quickly.
+            </p>
+
+            <p>
+                PaaS automates server configuration, OS security patches, container builds, and
+                scaling. It's ideal for modern microservices and web apps where development speed
+                matters far more than tuning OS settings.
+            </p>
+
+            <h3>Software as a Service (SaaS)</h3>
+
+            <p>
+                SaaS, such as Shopify or Gmail, is best when you just need a fully functional,
+                ready-to-use platform and have zero interest in managing application code,
+                databases, or infrastructure.
+            </p>
+        </section>
+
+        <section>
+            <h2>4. Amazon S3 data leak incidents</h2>
+
+            <p>
+                Amazon S3 object storage is secure by default, but human error and bad permissions
+                configuration by system administrators have caused massive public data leaks over
+                the years.
+            </p>
+
+            <p>Three well-known S3 bucket leak incidents include:</p>
+
+            <h3>US Department of Defense (CENTCOM) Leak 2017</h3>
+
+            <p>
+                Defense contractor Booz Allen Hamilton accidentally left an AWS S3 bucket configured
+                for public access without password protection.
+            </p>
+
+            <p>
+                The bucket contained sensitive military intelligence data, including battlefield
+                chat logs and credentials belonging to military staff.
+            </p>
+
+            <p>
+                The root cause was simple misconfiguration: setting bucket access permissions to
+                "Public" instead of restricting access to authenticated users.
+            </p>
+
+            <h3>Verizon Customer Data Leak 2017</h3>
+
+            <p>
+                A third-party vendor handling customer service analytics for Verizon left an
+                unsecured S3 bucket exposed to the open web.
+            </p>
+
+            <p>
+                The leak exposed personal information, account PINs and contact details for over 14
+                million customer accounts.
+            </p>
+
+            <p>
+                What went wrong was poor Identity and Access Management oversight and weak
+                third-party permissions monitoring.
+            </p>
+
+            <h3>Twilio / Accentuate S3 Bucket Hijacking</h3>
+
+            <p>
+                Attackers targeted exposed or misconfigured S3 buckets used by software supply
+                chains. By identifying abandoned S3 bucket names referenced in web code, malicious
+                actors re-created those bucket names under their own AWS accounts.
+            </p>
+
+            <p>
+                They could then serve compromised JavaScript files directly to active web
+                applications.
+            </p>
+
+            <h3>Automated Search Engines and Attack Tools</h3>
+
+            <p>
+                Security researchers and malicious actors use automated tools to discover publicly
+                exposed storage buckets. Some examples include:
+            </p>
+
+            <ul>
+                <li>
+                    <strong>Grayhat Warfare:</strong>
+                    A searchable web database that indexes millions of open, publicly exposed S3
+                    buckets and their files.
+                </li>
+
+                <li>
+                    <strong>AWSBucketDump:</strong>
+                    A command-line Python script that uses custom wordlists to brute-force S3 bucket
+                    names and download exposed public files automatically.
+                </li>
+
+                <li>
+                    <strong>S3Scanner:</strong>
+                    A scanner tool designed to automatically check lists of S3 URLs for weak
+                    read/write permissions and dump accessible bucket data.
+                </li>
+            </ul>
+        </section>
+    </body>
+</html>
